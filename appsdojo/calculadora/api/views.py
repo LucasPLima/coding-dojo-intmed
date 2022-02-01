@@ -6,9 +6,10 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 
 from ..serializers import CalculadoraSerializer, VariavelCalculadoraSerializer
+from ..viewmixins import CalculadoraViewMixin
 
 
-class CalculadoraViewSet(viewsets.ModelViewSet):
+class CalculadoraViewSet(viewsets.ModelViewSet, CalculadoraViewMixin):
     queryset = Calculadora.objects.filter()
     serializer_class = CalculadoraSerializer
     
