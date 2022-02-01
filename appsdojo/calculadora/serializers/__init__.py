@@ -1,3 +1,3 @@
-from .calculadora import CalculadoraSerializer
+from .calculadora import CalculadoraSerializer, VariavelCalculadoraSerializer
 
-__all__=[CalculadoraSerializer,]
+__all__=["CalculadoraSerializer", "VariavelCalculadoraSerializer"]
