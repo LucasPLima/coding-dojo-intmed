@@ -1,5 +1,3 @@
-
-
 # Calculadora
 
 Este projeto tem como objetivo permitir a criação de calculadoras com fórmulas específicas. Esse projeto foi inspirado em uma feature de calculadora médica recentemente entregue no projeto Atlas. 
@@ -19,6 +17,7 @@ Este projeto tem como objetivo permitir a criação de calculadoras com fórmula
 |--|--|
 | /calculadoras | Lista calculadoras cadastradas |
 | /calculadoras/:id | Carrega uma calculadora específica |
+| /calculadoras/:id/calcular | Endpoint utilizado para realizar o cálculo associado a calculadora |
 | /calculadoras/:id/variaveis | Lista variaveis de uma calculadora específica |
 | /calculadoras/:id/variaveis/:id_variavel | Carrega variável específica de uma calculadora |
 
@@ -35,7 +34,22 @@ Este projeto tem como objetivo permitir a criação de calculadoras com fórmula
 * Unidade
 * Foreign Key de Calculadora Associada
 
+### Payloads
+* Para cadastrar uma calculadora, podemos utilizar a seguinte estrutura:
+ `{
+   "nome":"Calculadora Teste",
+   "descricao": "Teste!",
+   "expressao": "x + 3"
+ }`
+ * Para cadastrar uma variável, podemos utilizar a seguinte estrutura:
+ `{
+   "nome": "Peso",
+    "identificador": "peso",
+    "unidade": "kg",
+ }`
+ * Para fazer um cálculo, passamos os seguintes dados:
 
+    `{ valores: [2, 3, 4] }`
 ## Validações e  casos de uso
 
 ### Calculadora
