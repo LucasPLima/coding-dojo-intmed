@@ -48,7 +48,7 @@ class CalculadoraTest(TestCase):
 class VariavelTest(TestCase):
     def setUp(self):
         self.calculadora = Calculadora.objects.create(nome="Calculadora Teste", descricao="Teste", expressao="peso + 3")
-        VariavelCalculadora.objects.create(nome="Variavel Teste", identificador="X", unidade="nulo", calculadora=calculadora)
+        self.variavel_1 = VariavelCalculadora.objects.create(nome="Variavel Teste", identificador="X", unidade="nulo", calculadora=self.calculadora)
 
     def test_criacao_variavel(self):
         self.assertEqual(VariavelCalculadora.objects.filter(nome="Variavel Teste").exists(), True)
@@ -58,4 +58,13 @@ class VariavelTest(TestCase):
         variavel.nome = "Marmelada"
         variavel.save()
 
-        self.assertEqual()
+        self.assertEqual(VariavelCalculadora.objects.filter(nome="Marmelada", calculadora=self.calculadora).exists(), True)
+
+    def test_exclui_variavel(self):
+        variavel= VariavelCalculadora.objects.filter(nome="Variavel Teste", calculadora=self.calculadora)
+        variavel.delete()
+
+        self.assertEqual(VariavelCalculadora.objects.filter(nome="Variavel Teste", calculadora=self.calculadora).exists(), False)
+
+    def test_variavel_nome_duplicado_na_calculadora(self):
+        self.assertRaises(IntegrityError, VariavelCalculadora.objects.create, nome="Variavel Teste", identificador="X", calculadora=self.calculadora)

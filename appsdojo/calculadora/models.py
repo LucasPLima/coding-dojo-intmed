@@ -38,6 +38,7 @@ class VariavelCalculadora(models.Model):
 
     class Meta:
         verbose_name = 'Variavel'
+        
 
     def __str__(self) -> str:
         return f'{self.identificador}: {self.nome}({self.unidade})'
