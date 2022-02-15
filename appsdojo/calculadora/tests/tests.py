@@ -33,4 +33,16 @@ class CalculadoraTest(TestCase):
         
         # Espera um erro de integridade
         self.assertRaises(IntegrityError, calculadora.save)
+    
+    def test_deletar_calculadora(self):
+        calculadora = Calculadora.objects.get(nome="Calculadora Teste")
+        calculadora.delete()
+        self.assertEqual(Calculadora.objects.filter(nome="Calculadora Teste").exists(), False)
+
+    def test_criacao_calculadora_duplicada(self):
+        self.assertRaises(IntegrityError,Calculadora.objects.create, 
+         nome="Calculadora Teste" , descricao="Teste", expressao="peso + 3"
+        )
+
+        
 
