@@ -1,5 +1,5 @@
 from appsdojo.calculadora.serializers import calculadora
-from calculadora.models import Calculadora
+from calculadora.models import Calculadora, VariavelCalculadora
 from django.db.utils import IntegrityError
 from django.test import TestCase
 
@@ -44,5 +44,18 @@ class CalculadoraTest(TestCase):
          nome="Calculadora Teste" , descricao="Teste", expressao="peso + 3"
         )
 
-        
 
+class VariavelTest(TestCase):
+    def setUp(self):
+        self.calculadora = Calculadora.objects.create(nome="Calculadora Teste", descricao="Teste", expressao="peso + 3")
+        VariavelCalculadora.objects.create(nome="Variavel Teste", identificador="X", unidade="nulo", calculadora=calculadora)
+
+    def test_criacao_variavel(self):
+        self.assertEqual(VariavelCalculadora.objects.filter(nome="Variavel Teste").exists(), True)
+
+    def test_atualiza_variavel(self):
+        variavel = VariavelCalculadora.objects.get(nome="Variavel Teste", calculadora=self.calculadora)
+        variavel.nome = "Marmelada"
+        variavel.save()
+
+        self.assertEqual()
