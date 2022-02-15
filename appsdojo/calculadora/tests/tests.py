@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from ..models import Calculadora
+from calculadora.models import Calculadora
 
 # Create your tests here.
 class CalculadoraTest(TestCase):

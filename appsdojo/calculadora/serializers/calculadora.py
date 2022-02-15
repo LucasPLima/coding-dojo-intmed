@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 
-from ..models import Calculadora, VariavelCalculadora
+from calculadora.models import Calculadora, VariavelCalculadora
 
 
 class VariavelCalculadoraSerializer(serializers.ModelSerializer):
