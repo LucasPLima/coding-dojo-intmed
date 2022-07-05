@@ -28,6 +28,7 @@ class VariavelCalculadora(models.Model):
     unidade = models.CharField(
         null=True, blank=True, max_length=10, db_column='nm_unidade'
     )
+    tobias = models.CharField(null=False, max_length=255, db_column='nm_variavel')
     
     calculadora = models.ForeignKey(
         Calculadora,
